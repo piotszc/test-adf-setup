@@ -1,0 +1,12 @@
+{
+	"name": "circleknablob01selfhostedRuntime",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/0bdaf605-398a-4b16-9114-85a7489ffed5/resourcegroups/na-bi-sandbox-use2-rg/providers/Microsoft.DataFactory/factories/crknabietladf002s/integrationruntimes/circleknablob01selfhostedRuntime",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}

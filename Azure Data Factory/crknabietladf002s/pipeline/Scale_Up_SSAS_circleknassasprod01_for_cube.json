@@ -1,0 +1,36 @@
+{
+	"name": "Scale_Up_SSAS_circleknassasprod01_for_cube",
+	"properties": {
+		"description": "Scale up the prod ssas server before cube generation. Do it by calling webhook \"adf-webhook-scale-up-circleknassasprod01-for-cube-process\" or the \"ADF-Webhook-AzureAnalysisServicesManualScaling\" runbook.",
+		"activities": [
+			{
+				"name": "Scale SSAS",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://sandbox-dummy.azure-api.net/webhooks?token=G0%252fhwytFWxr%252blmWwMxcHnlg0zPrsi6qhikWVyFg7KKU%253d",
+					"method": "POST",
+					"headers": {
+						"message": "xyz"
+					},
+					"body": {
+						"default": "1"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Azure Automation"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

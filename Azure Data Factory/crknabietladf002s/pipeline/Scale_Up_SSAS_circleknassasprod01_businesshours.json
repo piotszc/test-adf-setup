@@ -1,0 +1,36 @@
+{
+	"name": "Scale_Up_SSAS_circleknassasprod01_businesshours",
+	"properties": {
+		"description": "Scale up the prod ssas server during business hours. Only there in case it failed with the scale up/down after/before the nightly cube processing. Do it by calling webhook \"adf-webhook-scale-up-circleknassasprod01-businesshours\" or the \"ADF-Webhook-AzureAnalysisServicesManualScaling\" runbook.",
+		"activities": [
+			{
+				"name": "Scale SSAS",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://sandbox-dummy.azure-api.net/webhooks?token=G0%252fhwytFWxr%252blmWwMxcHnlg0zPrsi6qhikWVyFg7KKU%253d",
+					"method": "POST",
+					"headers": {
+						"message": "xyz"
+					},
+					"body": {
+						"default": "1"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Azure Automation"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

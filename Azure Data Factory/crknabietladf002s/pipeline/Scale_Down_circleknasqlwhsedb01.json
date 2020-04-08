@@ -1,0 +1,36 @@
+{
+	"name": "Scale_Down_circleknasqlwhsedb01",
+	"properties": {
+		"description": "Scale down the prod Azure SQL Data Warehouse. Do it by calling webhook \"adf-webhook-scale-down-circleknasqlwhsedb01\" for the Runbook ADF-Webhook-SQL-Data-Warehouse.",
+		"activities": [
+			{
+				"name": "Runbook Scale-SQL-Data-Warehouse",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"url": "https://sandbox-dummy.azure-api.net/webhooks?token=G0%252fhwytFWxr%252blmWwMxcHnlg0zPrsi6qhikWVyFg7KKU%253d",
+					"method": "POST",
+					"headers": {
+						"message": "xyz"
+					},
+					"body": {
+						"default": "1"
+					}
+				}
+			}
+		],
+		"folder": {
+			"name": "Azure Automation"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

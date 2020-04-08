@@ -1,0 +1,18 @@
+{
+	"name": "Azure_Databricks_On_Demand_Fixed_Large",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://eastus2.azuredatabricks.net",
+			"newClusterNodeType": "Standard_DS12_v2",
+			"newClusterNumOfWorker": "10",
+			"newClusterSparkEnvVars": {
+				"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+			},
+			"newClusterVersion": "6.1.x-scala2.11",
+			"encryptedCredential": ""
+		}
+	}
+}

@@ -1,0 +1,64 @@
+{
+	"name": "Miratag_daily",
+	"properties": {
+		"activities": [
+			{
+				"name": "BatchLoad_Daily",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "batch_load_daily",
+					"value": {
+						"value": "@formatDateTime(adddays(pipeline().TriggerTime,-0),'yyyy-MM-dd')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Miratag",
+				"type": "DatabricksNotebook",
+				"dependsOn": [
+					{
+						"activity": "BatchLoad_Daily",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.01:00:00",
+					"retry": 3,
+					"retryIntervalInSeconds": 300,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/admin_pszczepa/dummy",
+					"baseParameters": {
+						"datetoEnd": {
+							"value": "@variables('batch_load_daily')",
+							"type": "Expression"
+						},
+						"daysoffset": "1"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "Azure_Databricks_On_Demand_Fixed_Large",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"variables": {
+			"batch_load_daily": {
+				"type": "String"
+			}
+		},
+		"folder": {
+			"name": "Databricks Pipelines"
+		},
+		"annotations": []
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
